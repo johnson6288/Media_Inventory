@@ -1,0 +1,73 @@
+<section class="mediaapp">
+  <header class="header">
+    <h1>Items</h1>
+    <fieldset>
+    	<legend>Enter Information</legend>
+
+			<div>
+				<label for="title">Title</label><br>
+    			<input class="new-media" placeholder="Title" autofocus="" [(ngModel)]="newMedia.title" id="title" type="text" required>
+  			</div>
+			<div>
+				<label for="type">Type</label><br>
+				<select class="new-type" id="type" [(ngModel)]="newMedia.type" required>
+					<option *ngFor="let type of types" [value]="type">{{type}}</option>
+				</select>
+    		</div>
+    		<div>
+    			<label for="extra">Extra Information</label><br>
+    			<input placeholder="Extra Information" [(ngModel)]="newMedia.extrainfo" id="extra" type ="text">
+    		</div>
+    		<div>
+    			<button type="button" (click)="addMedia()">Submit</button>
+    		</div>
+
+        </fieldset>
+        <br>
+  </header>
+  <section class="main" *ngIf="medias.length > 0">
+    <!----
+    ul class="media-list">
+      <li *ngFor="let media of medias" [class.completed]="media.active">
+    -->
+        <table class="media-list">
+        	<tr>
+	          	<th>Title</th>
+	          	<th>Type</th>
+	          	<th>Active</th>
+	          	<th>Extra Information</th>
+	          	<th>Delete</th>
+          	</tr>
+
+
+
+          	<tr *ngFor="let media of medias" [class.completed]="media.active">
+            <!--<div class="view"> -->
+          		<td>
+          			{{media.title}}
+          		</td>
+          		<td>
+          			{{media.type}}
+          		</td>
+          		<td>
+          			<input class="toggle" type="checkbox" (click)="toggleMediaActive(media)" [checked]="media.active">
+          		</td>
+          		<td>
+          			{{media.extrainfo}}
+          		</td>
+          		<td>
+          			<button type="button" class="destroy" (click)="removeMedia(media)">X</button>
+          		</td>
+
+        <!-- </div> -->
+               </tr>
+          </table>
+
+
+      <!-- </li>
+     </ul>-->
+  </section>
+  <footer class="footer" *ngIf="medias.length > 0">
+
+  </footer>
+</section>
